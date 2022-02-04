@@ -1,21 +1,16 @@
-import { h } from 'preact';
-import { Router } from 'preact-router';
+import { h, render, Component } from 'preact';
 
-import Header from './header';
-
-// Code-splitting is automated for `routes` directory
-import Home from '../routes/home';
-import Profile from '../routes/profile';
-
-const App = () => (
-	<div id="app">
-		<Header />
-		<Router>
-			<Home path="/" />
-			<Profile path="/profile/" user="me" />
-			<Profile path="/profile/:user" />
-		</Router>
-	</div>
-)
+class App extends Component {
+  state = { value: ''}
+  render() {
+    return(
+	  <div id="app">
+        always read the plaque
+	  </div>
+    )
+  }
+}
 
 export default App;
+
+
