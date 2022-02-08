@@ -9,7 +9,7 @@ class TipPercentageComponent extends Component {
       <div>
         <i class="fas fa-angle-double-left bumper" onClick={props.handleTipPercentageBump} inc="-5"></i>
         <i class="fas fa-angle-left bumper" onClick={props.handleTipPercentageBump} inc="-1"></i>
-        <span>{props.tp}%</span>
+        <span>{props.children}</span>
         <i class="fas fa-angle-right bumper" onClick={props.handleTipPercentageBump} inc="1"></i>
         <i class="fas fa-angle-double-right bumper" onClick={props.handleTipPercentageBump} inc="5"></i>
       </div>
@@ -77,6 +77,18 @@ class App extends Component {
                    splits:        this.state.splits})
   }
 
+  handleTotalWithBillBump = (props) => {
+    let twp = this.getTotalWithTip()
+    let incr = parseInt(props.target.attributes['inc'].value)
+    let bumpedTwp = this.bumpIt(twp, incr)
+
+    let perc = ((bumpedTwp - this.state.total) / this.state.total) * 100
+
+    this.setState({total:         this.state.total,
+                   tipPercentage: (Math.round(perc * 100) / 100).toFixed(2),
+                   splits:        this.state.splits})
+  }
+
   handleAddClick = () => {
     this.state.splits.push({locked: false})
     this.setState({total:         this.state.total,
@@ -112,12 +124,12 @@ class App extends Component {
             <div class="one column"/>
             <label class="two columns">Tip Percentage</label>
 
-            <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTipPercentageBump} tp={this.state.tipPercentage}>{this.state.tipPercentage}</TipPercentageComponent>
+            <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
         <div class="row">
             <div class="one column"/>
             <label class="two columns">Total With Tip</label>
-            <label class="two columns">{this.getTotalWithTip()}</label>
+            <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
         </div>
 
         {this.state.splits.map((s,n) => (
