@@ -4,7 +4,7 @@ import fa from "../style/all.min.css";
 
 class TipPercentageComponent extends Component {
 
-  render(props, state) {
+  render(props) {
     return(
       <div>
         <i class="fas fa-angle-double-left bumper" onClick={props.handleTipPercentageBump} inc="-5"></i>
@@ -38,7 +38,6 @@ class App extends Component {
            splits: [{locked: false}]}
 
   getTotalWithTip = () => {
-    // debugger
     let t = this.state.total + (this.state.total * (this.state.tipPercentage / 100))
     return (Math.round(t * 100) / 100).toFixed(2);
   }
@@ -48,10 +47,33 @@ class App extends Component {
     return (Math.round(v * 100) / 100).toFixed(2);
   }
 
+  bumpIt = (v, inc) => {
+    let x = Math.floor(v)
+    let quotient = Math.floor(x/Math.abs(inc))
+    let remainder = x % inc
+
+    if (inc < 0) {
+        if (inc === -1) {
+            return quotient + inc
+        } else {
+            if (remainder === 0) {
+                remainder = inc * -1
+            }
+            return x - remainder
+        }
+    } else {
+        if (inc === 1) {
+            return quotient + inc
+        } else {
+            return (quotient + 1) * inc
+        }
+    }
+  }
+
   handleTipPercentageBump = (props) => {
     let incr = parseInt(props.target.attributes['inc'].value)
     this.setState({total:         this.state.total,
-                   tipPercentage: (this.state.tipPercentage + incr),
+                   tipPercentage: (this.bumpIt(this.state.tipPercentage, incr)),
                    splits:        this.state.splits})
   }
 
