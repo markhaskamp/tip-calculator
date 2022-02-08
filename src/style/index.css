@@ -1,12 +1,13 @@
 html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
+	/* height: 100%; */
+	/* width: 100%; */
+	padding-top: 0.8em;
 	margin: 0;
 	background: #FAFAFA;
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 400;
-	color: #444;
+	/* color: #444; */
+    color: #031c2b;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -18,3 +19,25 @@ html, body {
 #app {
 	height: 100%;
 }
+
+.delete {
+    cursor: pointer;
+}
+
+/* paletton.com */
+/* base color 29526d */
+.pageHeader {
+    background-color: #92b3c9;
+    text-align: center;
+    color: #FAFAFA;
+}
+
+.bumper {
+    margin-left: 0.75em;
+    margin-right:0.75em;
+}
+
+.splitLine {
+    border: 1px solid black;
+}
+
