@@ -112,6 +112,11 @@ class App extends Component {
                    splits:        this.state.splits})
   }
 
+  handleTotalSplitsClick = (ev) => {
+    let totalSplits = parseInt(ev.target.attributes['totalSplits'].value)
+    console.log('totalSplits', totalSplits)
+  }
+
   render(props, {total, splits}) {
     return(
 	  <div id="app" class="container">
@@ -141,12 +146,24 @@ class App extends Component {
 
         <div class="splitPick row">
             <div class="one column">&nbsp;</div>
-            <div class="one column"><i class="fas fa-user pointer"></i></div>
-            <div class="one column"><i class={splits.length>1 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
-            <div class="one column"><i class={splits.length>2 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
-            <div class="one column"><i class={splits.length>3 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
-            <div class="one column"><i class={splits.length>4 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
-            <div class="one column"><i class={splits.length>5 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
+            <div class="one column">
+                <i totalSplits="1" onClick={this.handleTotalSplitsClick} class={splits.length>0 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
+            <div class="one column">
+                <i totalSplits="2" onClick={this.handleTotalSplitsClick} class={splits.length>1 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
+            <div class="one column">
+                <i totalSplits="3" onClick={this.handleTotalSplitsClick} class={splits.length>2 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
+            <div class="one column">
+                <i totalSplits="4" onClick={this.handleTotalSplitsClick} class={splits.length>3 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
+            <div class="one column">
+                <i totalSplits="5" onClick={this.handleTotalSplitsClick} class={splits.length>4 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
+            <div class="one column">
+                <i totalSplits="6" onClick={this.handleTotalSplitsClick} class={splits.length>5 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
+            </div>
         </div>
 
         {this.state.splits.map((s,n) => (
