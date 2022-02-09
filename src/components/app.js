@@ -114,7 +114,6 @@ class App extends Component {
 
   handleTotalSplitsClick = (ev) => {
     let totalSplits = parseInt(ev.target.attributes['totalSplits'].value)
-    console.log('totalSplits', totalSplits)
     let newSplits = []
     for (let i=0; i<totalSplits; i++) {
         newSplits.push({locked: false})
@@ -178,7 +177,7 @@ class App extends Component {
           <div class="splitLine row">
             <div class="four columns">&nbsp;</div>
             <div class="six columns">{this.getSplitValue()}</div>
-            <div class="one column"><i class="fas fa-lock-open"></i></div>
+            <div class="one column">&nbsp;</div>
             <div id={n} class="one column pointer " style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
           </div>
         ))}

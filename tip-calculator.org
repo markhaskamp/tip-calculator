@@ -7,7 +7,7 @@
 ** recalculate icon
 ** tip % can't go below 0
 ** first split never locks, don't show lock on first split line
-** split humans define the number of splits
+** bumpers in first split
 
 * Done
 ** dollar amounts are rounded to 0.00 format
@@ -19,5 +19,6 @@
 ** tip defaults to 20%
 ** always have at least one split
 ** Bill Total, Total with Tip
+** split humans define the number of splits
   
 
