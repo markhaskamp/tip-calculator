@@ -115,6 +115,14 @@ class App extends Component {
   handleTotalSplitsClick = (ev) => {
     let totalSplits = parseInt(ev.target.attributes['totalSplits'].value)
     console.log('totalSplits', totalSplits)
+    let newSplits = []
+    for (let i=0; i<totalSplits; i++) {
+        newSplits.push({locked: false})
+    }
+
+    this.setState({total:         this.state.total,
+                   tipPercentage: this.state.tipPercentage,
+                   splits:        newSplits})
   }
 
   render(props, {total, splits}) {
