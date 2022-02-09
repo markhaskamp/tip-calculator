@@ -6,12 +6,14 @@ class TipPercentageComponent extends Component {
 
   render(props) {
     return(
-      <div>
-        <i class="fas fa-angle-double-left bumper" onClick={props.handleTipPercentageBump} inc="-5"></i>
-        <i class="fas fa-angle-left bumper" onClick={props.handleTipPercentageBump} inc="-1"></i>
-        <span>{props.children}</span>
-        <i class="fas fa-angle-right bumper" onClick={props.handleTipPercentageBump} inc="1"></i>
-        <i class="fas fa-angle-double-right bumper" onClick={props.handleTipPercentageBump} inc="5"></i>
+      <div class="seven columns">
+        <div class="row">
+          <div class="one column"><i class="fas fa-angle-double-left bumper pointer" onClick={props.handleTipPercentageBump} inc="-5"></i></div>
+          <div class="one column"><i class="fas fa-angle-left bumper pointer" onClick={props.handleTipPercentageBump} inc="-1"></i></div>
+          <div class="two columns" style={{"text-align": "center"}}>{props.children}</div>
+          <div class="one column"><i class="fas fa-angle-right bumper pointer" onClick={props.handleTipPercentageBump} inc="1"></i></div>
+          <div class="one column"><i class="fas fa-angle-double-right bumper pointer" onClick={props.handleTipPercentageBump} inc="5"></i></div>
+        </div>
       </div>
     )
   }
@@ -115,32 +117,47 @@ class App extends Component {
 	  <div id="app" class="container">
         <Header/>
 
-        <div style={{"margin-top": "1.5em"}} class="row">
-            <div class="one column"/>
+        <div style={{"margin-top": "1.5em"}} class="calculator row">
+            <div class="three columns">&nbsp;</div>
             <label class="two columns">Bill Total</label>
             <input class="two columns" type="text" name="txtTotal" onChange={this.handleTotalChange}/>
         </div>
-        <div class="row">
-            <div class="one column"/>
-            <label class="two columns">Tip Percentage</label>
+        <div class="calculator row">
+            <div class="one column">&nbsp;</div>
+            <label class="four columns" style={{"text-align": "right"}}>Tip Percentage</label>
 
-            <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
+            <TipPercentageComponent handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
-        <div class="row">
-            <div class="one column"/>
-            <label class="two columns">Total With Tip</label>
+        <div class="calculator row">
+            <div class="two columns">&nbsp;</div>
+            <label class="three columns" style={{"text-align": "right"}}>Total With Tip</label>
             <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
+        </div>
+
+        <div class="row">
+          <div class="two columns">&nbsp;</div>
+          <div class="eight columns"><hr/></div>
+        </div>
+
+        <div class="splitPick row">
+            <div class="one column">&nbsp;</div>
+            <div class="one column"><i class="fas fa-user pointer"></i></div>
+            <div class="one column"><i class={splits.length>1 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
+            <div class="one column"><i class={splits.length>2 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
+            <div class="one column"><i class={splits.length>3 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
+            <div class="one column"><i class={splits.length>4 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
+            <div class="one column"><i class={splits.length>5 ? "fas fa-user pointer" : "far fa-user pointer"}></i></div>
         </div>
 
         {this.state.splits.map((s,n) => (
           <div class="splitLine row">
-            <span class="one column">
-              <Split id={n} class="two columns">{this.getSplitValue()}</Split>
-            </span>
-            <span id={n} class="delete one column" style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt fa-lg"></i></span>
+            <div class="four columns">&nbsp;</div>
+            <div class="six columns">{this.getSplitValue()}</div>
+            <div class="one column"><i class="fas fa-lock-open"></i></div>
+            <div id={n} class="one column pointer " style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
           </div>
         ))}
-        <div class="fas fa-plus-square fa-2x" style={{"color": "#009900"}} onClick={this.handleAddClick}></div>
+        <div class="fas fa-plus-square fa-2x pointer" style={{"color": "#009900"}} onClick={this.handleAddClick}></div>
 
 	  </div>
     )
