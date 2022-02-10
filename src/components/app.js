@@ -1,19 +1,19 @@
 import { h, render, Component } from 'preact';
-import skeleton from "../style/skeleton.css";
 import fa from "../style/all.min.css";
 
 class TipPercentageComponent extends Component {
 
   render(props) {
     return(
-      <div class="seven columns">
-        <div class="row">
-          <div class="one column"><i class="fas fa-angle-double-left bumper pointer" onClick={props.handleTipPercentageBump} inc="-5"></i></div>
-          <div class="one column"><i class="fas fa-angle-left bumper pointer" onClick={props.handleTipPercentageBump} inc="-1"></i></div>
-          <div class="two columns" style={{"text-align": "center"}}>{props.children}</div>
-          <div class="one column"><i class="fas fa-angle-right bumper pointer" onClick={props.handleTipPercentageBump} inc="1"></i></div>
-          <div class="one column"><i class="fas fa-angle-double-right bumper pointer" onClick={props.handleTipPercentageBump} inc="5"></i></div>
+      <div>
+        <div class="foo">
+          <div class="fas fa-angle-double-left pointer leftBumper" style={{"padding-left": "4.0em"}} onClick={props.handleTipPercentageBump} inc="-5"></div>
+          <div class="fas fa-angle-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-1"></div>
+          {props.children}
+          <div class="fas fa-angle-right pointer rightBumper" onClick={props.handleTipPercentageBump} inc="1"></div>
+          <div class="fas fa-angle-double-right pointer rightBumper" onClick={props.handleTipPercentageBump} inc="5"></div>
         </div>
+        <div style={{"clear": "left"}}></div>
       </div>
     )
   }
@@ -21,11 +21,11 @@ class TipPercentageComponent extends Component {
 
 function Header(props) {
     return (
-       <div class="row pageHeader" style={{"padding-top": "0.667em"}}>
-            <div class="one column"><i class="fas fa-calculator" style={{"padding-left": "0.25em"}}></i></div>
-            <div class="ten columns"><h4>Tip Calculator</h4></div>
-            <div class="one column"><i class="fas fa-percentage" style={{"padding-right": "0.25em"}}></i></div>
-        </div>)
+       <div class="pageHeader" style={{"padding-top": "0.667em"}}>
+            <i class="fas fa-calculator" style={{"padding-left": "0.25em"}}></i>
+            <span class="header">Tip Calculator</span>
+            <i class="fas fa-percentage" style={{"padding-right": "0.25em"}}></i>
+       </div>)
 }
 
 function Split(props) {
@@ -126,59 +126,41 @@ class App extends Component {
 
   render(props, {total, splits}) {
     return(
-	  <div id="app" class="container">
+	  <div id="app">
         <Header/>
 
-        <div style={{"margin-top": "1.5em"}} class="calculator row">
-            <div class="three columns">&nbsp;</div>
-            <label class="two columns">Bill Total</label>
-            <input class="three columns" type="text" id="txtTotal" style={{"text-align": "center"}} onChange={this.handleTotalChange}/>
+        <div class="billTotal">
+            <label style={{"padding-right": "0.33em"}}>Bill Total</label>
+            <input type="text" id="txtTotal" style={{"text-align": "center"}} onChange={this.handleTotalChange}/>
         </div>
-        <div class="calculator row">
-            <div class="one column">&nbsp;</div>
-            <label class="four columns" style={{"text-align": "right"}}>Tip Percentage</label>
+
+        <div style={{"clear": "left"}}>
+            <div class="tipPercentageText">
+                <label>Tip Percentage</label>
+            </div>
 
             <TipPercentageComponent handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
-        <div class="calculator row">
-            <div class="two columns">&nbsp;</div>
-            <label class="three columns" style={{"text-align": "right"}}>Total With Tip</label>
-            <TipPercentageComponent class="two columns" handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
+        <div class="tipPercentageText">
+            <label>Total With Tip</label>
+            <TipPercentageComponent handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
         </div>
 
-        <div class="row">
-          <div class="two columns">&nbsp;</div>
-          <div class="eight columns"><hr/></div>
-        </div>
+        <hr/>
 
-        <div class="splitPick row">
-            <div class="one column">&nbsp;</div>
-            <div class="one column">
-                <i totalSplits="1" onClick={this.handleTotalSplitsClick} class={splits.length>0 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
-            <div class="one column">
-                <i totalSplits="2" onClick={this.handleTotalSplitsClick} class={splits.length>1 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
-            <div class="one column">
-                <i totalSplits="3" onClick={this.handleTotalSplitsClick} class={splits.length>2 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
-            <div class="one column">
-                <i totalSplits="4" onClick={this.handleTotalSplitsClick} class={splits.length>3 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
-            <div class="one column">
-                <i totalSplits="5" onClick={this.handleTotalSplitsClick} class={splits.length>4 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
-            <div class="one column">
-                <i totalSplits="6" onClick={this.handleTotalSplitsClick} class={splits.length>5 ? "fas fa-user pointer" : "far fa-user pointer"}></i>
-            </div>
+        <div class="splitPick">
+            <div totalSplits="1" onClick={this.handleTotalSplitsClick} class={splits.length>0 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div totalSplits="2" onClick={this.handleTotalSplitsClick} class={splits.length>1 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div totalSplits="3" onClick={this.handleTotalSplitsClick} class={splits.length>2 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div totalSplits="4" onClick={this.handleTotalSplitsClick} class={splits.length>3 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div totalSplits="5" onClick={this.handleTotalSplitsClick} class={splits.length>4 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div totalSplits="6" onClick={this.handleTotalSplitsClick} class={splits.length>5 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
         </div>
 
         {this.state.splits.map((s,n) => (
-          <div class="splitLine row">
-            <div class="four columns">&nbsp;</div>
-            <div class="six columns">{this.getSplitValue()}</div>
-            <div class="one column">&nbsp;</div>
-            <div id={n} class="one column pointer " style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
+          <div class="splitLine">
+            {this.getSplitValue()}
+            <div id={n} class="pointer " style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
           </div>
         ))}
         <div class="fas fa-plus-square fa-2x pointer" style={{"color": "#009900"}} onClick={this.handleAddClick}></div>

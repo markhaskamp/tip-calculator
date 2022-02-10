@@ -10,6 +10,8 @@
 ** bumpers in first split
 ** single bump doesn't work quite right when cents are present
 ** no trash can for first split
+** style for mobile portrait
+** move plus sign to right of split users
 
 * Done
 ** dollar amounts are rounded to 0.00 format

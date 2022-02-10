@@ -20,44 +20,72 @@ html, body {
 	height: 100%;
 }
 
-.calculator {
-    font-size: 1.0em;
-}
-
 .pointer {
     cursor: pointer;
 }
 
 /* paletton.com */
 /* base color 29526d */
+
+.header {
+    font-weight: bold;
+    font-size: 1.75em;
+    padding: 1.33em;
+}
+
 .pageHeader {
     background-color: #11354c;
     text-align: center;
     color: #FAFAFA;
 }
 
-.bumper {
-    margin-left: 0.75em;
-    margin-right:0.75em;
+.billTotal {
+    font-size: 2.0rem;
+    margin-top: 1.0rem;
+    text-align: center;
+}
+
+#txtTotal {
+    font-size: 2.0rem;
+    width: 8.25rem;
+}
+
+.tipPercentageText {
+    text-align: center;
+    margin-top: 1.0em;
+    font-size: 1.5rem;
+}
+
+.foo {
+    text-align: center;
+    float: left;
+    font-size: 1.5rem;
+    padding-bottom: 1.5em;
+}
+
+.leftBumper {
+    padding-right: 1.5rem;
+}
+
+.rightBumper {
+    padding-left: 1.5rem;
 }
 
 .splitPick {
-    margin-top: 1.5em;
-    font-size: 1.0em;
+    font-size: 1.5em;
+}
+
+.splitPicker {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .splitLine {
-    /* margin-top: 0.75em; */
     margin-top: 3px;
     padding: 0.15em;
     border-bottom: 2px solid #49738d;
     border-right: 2px solid #49738d;
-    font-size: 1.0em;
     background-color: #92b3c9;
     color: #FAFAFA;
-}
-
-#txtTotal {
-    font-size: 1.0em;
 }
 
