@@ -8,6 +8,8 @@
 ** tip % can't go below 0
 ** first split never locks, don't show lock on first split line
 ** bumpers in first split
+** single bump doesn't work quite right when cents are present
+** no trash can for first split
 
 * Done
 ** dollar amounts are rounded to 0.00 format

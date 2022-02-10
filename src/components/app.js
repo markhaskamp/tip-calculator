@@ -132,7 +132,7 @@ class App extends Component {
         <div style={{"margin-top": "1.5em"}} class="calculator row">
             <div class="three columns">&nbsp;</div>
             <label class="two columns">Bill Total</label>
-            <input class="two columns" type="text" name="txtTotal" onChange={this.handleTotalChange}/>
+            <input class="three columns" type="text" id="txtTotal" style={{"text-align": "center"}} onChange={this.handleTotalChange}/>
         </div>
         <div class="calculator row">
             <div class="one column">&nbsp;</div>
