@@ -22,9 +22,9 @@ class TipPercentageComponent extends Component {
 function Header(props) {
     return (
        <div class="row pageHeader" style={{"padding-top": "0.667em"}}>
-            <div class="one column"><i class="fas fa-calculator fa-3x" style={{"padding-left": "0.25em"}}></i></div>
-            <div class="ten columns"><h3>Tip Calculator</h3></div>
-            <div class="one column"><i class="fas fa-percentage fa-3x" style={{"padding-right": "0.25em"}}></i></div>
+            <div class="one column"><i class="fas fa-calculator" style={{"padding-left": "0.25em"}}></i></div>
+            <div class="ten columns"><h4>Tip Calculator</h4></div>
+            <div class="one column"><i class="fas fa-percentage" style={{"padding-right": "0.25em"}}></i></div>
         </div>)
 }
 
