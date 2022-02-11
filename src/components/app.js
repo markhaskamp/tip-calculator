@@ -6,8 +6,8 @@ class TipPercentageComponent extends Component {
   render(props) {
     return(
       <div>
-        <div class="foo">
-          <div class="fas fa-angle-double-left pointer leftBumper" style={{"padding-left": "4.0em"}} onClick={props.handleTipPercentageBump} inc="-5"></div>
+        <div class="valueBumpers" style={{"text-align": "right"}}>
+          <div class="fas fa-angle-double-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-5"></div>
           <div class="fas fa-angle-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-1"></div>
           {props.children}
           <div class="fas fa-angle-right pointer rightBumper" onClick={props.handleTipPercentageBump} inc="1"></div>
@@ -135,35 +135,32 @@ class App extends Component {
         </div>
 
         <div style={{"clear": "left"}}>
-            <div class="tipPercentageText">
-                <label>Tip Percentage</label>
-            </div>
-
+            <div class="tipPercentageText" style={{"float": "left", "font-size": "20px"}}>Tip Percentage</div>
             <TipPercentageComponent handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
         <div class="tipPercentageText">
-            <label>Total With Tip</label>
+            <div class="tipPercentageText" style={{"float": "left", "font-size": "20px"}}>Total With Tip</div>
             <TipPercentageComponent handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
         </div>
 
         <hr/>
 
-        <div class="splitPick">
+        <div>
             <div totalSplits="1" onClick={this.handleTotalSplitsClick} class={splits.length>0 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="2" onClick={this.handleTotalSplitsClick} class={splits.length>1 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="3" onClick={this.handleTotalSplitsClick} class={splits.length>2 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="4" onClick={this.handleTotalSplitsClick} class={splits.length>3 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="5" onClick={this.handleTotalSplitsClick} class={splits.length>4 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="6" onClick={this.handleTotalSplitsClick} class={splits.length>5 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
+            <div class="fas fa-plus-square splitPicker pointer" onClick={this.handleAddClick}></div>
         </div>
 
         {this.state.splits.map((s,n) => (
           <div class="splitLine">
-            {this.getSplitValue()}
-            <div id={n} class="pointer " style={{"color": "#990000"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
+            <div style={{"float": "left"}}>{this.getSplitValue()}</div>
+            <div id={n} class="pointer " style={{"color": "#990000", "text-align": "right"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
           </div>
         ))}
-        <div class="fas fa-plus-square fa-2x pointer" style={{"color": "#009900"}} onClick={this.handleAddClick}></div>
 
 	  </div>
     )

@@ -1,5 +1,7 @@
 
 * To Do
+** style for mobile portrait
+*** lock in a 400px width
 ** dollar amounts add up exactly to total
 ** can lock a split
 *** and unlock it
@@ -10,10 +12,11 @@
 ** bumpers in first split
 ** single bump doesn't work quite right when cents are present
 ** no trash can for first split
-** style for mobile portrait
-** move plus sign to right of split users
+** show the actual tip amount
+** tip percentage value should always have format xx.xx
 
 * Done
+** move plus sign to right of split users
 ** dollar amounts are rounded to 0.00 format
 ** can bump up/down Total With Tip
 *** nearest 1$ and nearest 5$
