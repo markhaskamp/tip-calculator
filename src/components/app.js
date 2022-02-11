@@ -8,11 +8,11 @@ class TipPercentageComponent extends Component {
       <div>
         <div class="tipPercentageText">{props.label}</div>
         <div class="valueBumpers">
-          <div class="fas fa-angle-double-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-5"></div>
-          <div class="fas fa-angle-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-1"></div>
-          {props.children}
-          <div class="fas fa-angle-right pointer rightBumper" onClick={props.handleTipPercentageBump} inc="1"></div>
-          <div class="fas fa-angle-double-right pointer rightBumper" onClick={props.handleTipPercentageBump} inc="5"></div>
+          <span class="fas fa-angle-double-left pointer bumper" onClick={props.handleTipPercentageBump} inc="-5"></span>
+          <span class="fas fa-angle-left pointer bumper" onClick={props.handleTipPercentageBump} inc="-1"></span>
+          <span class="foo">{props.children}</span>
+          <span class="fas fa-angle-right pointer bumper" onClick={props.handleTipPercentageBump} inc="1"></span>
+          <span class="fas fa-angle-double-right pointer bumper" onClick={props.handleTipPercentageBump} inc="5"></span>
         </div>
         <div style={{"clear": "left"}}></div>
       </div>

@@ -66,16 +66,19 @@ html, body {
 .valueBumpers {
     width: 240px;
     color: #277650;
-    text-align: right;
     float: left;
 }
 
-.leftBumper {
-    padding-right: 1.5rem;
+.bumper {
+    display: inline-block;
+    width: 35px;
+    text-align: center;
 }
 
-.rightBumper {
-    padding-left: 1.5rem;
+.foo {
+    display: inline-block;
+    width: 95px;
+    text-align: center;
 }
 
 .splitPicker {
