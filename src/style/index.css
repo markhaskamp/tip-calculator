@@ -94,3 +94,15 @@ html, body {
     color: #FAFAFA;
 }
 
+.splitterCount {
+    float: left;
+    width: 75px;
+    text-align: center;
+}
+
+.splitterValue {
+    float: left;
+    width: 200px;
+    text-align: center;
+}
+

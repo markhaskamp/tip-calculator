@@ -40,6 +40,12 @@ class App extends Component {
            tipPercentage: 20,
            splits: [{locked: false}]}
 
+  getTipAmount = () => {
+    let totalWithTip = this.getTotalWithTip()
+    let tipAmount = totalWithTip - this.state.total
+    return (Math.round(tipAmount * 100) / 100).toFixed(2)
+  }
+
   getTotalWithTip = () => {
     let t = this.state.total + (this.state.total * (this.state.tipPercentage / 100))
     return (Math.round(t * 100) / 100).toFixed(2);
@@ -77,6 +83,18 @@ class App extends Component {
     let incr = parseInt(props.target.attributes['inc'].value)
     this.setState({total:         this.state.total,
                    tipPercentage: (this.bumpIt(this.state.tipPercentage, incr)),
+                   splits:        this.state.splits})
+  }
+
+  handleTipAmountBump = (props) => {
+    let tipAmount = this.getTotalWithTip() - this.state.total
+    let incr = parseInt(props.target.attributes['inc'].value)
+    let bumpedTipAmount = this.bumpIt(tipAmount, incr)
+
+    let tipPercentage = (bumpedTipAmount / this.state.total) * 100
+
+    this.setState({total:         this.state.total,
+                   tipPercentage: (Math.round(tipPercentage * 100) / 100).toFixed(2),
                    splits:        this.state.splits})
   }
 
@@ -125,6 +143,12 @@ class App extends Component {
                    splits:        newSplits})
   }
 
+  deleteComponent = (n) => {
+    return (
+        <div id={n} class="pointer " style={{"color": "#990000", "text-align": "right"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
+    )
+  }
+
   render(props, {total, splits}) {
     return(
 	  <div id="app">
@@ -137,6 +161,9 @@ class App extends Component {
 
         <div style={{"clear": "left"}}>
             <TipPercentageComponent label="Tip Percentage" handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
+        </div>
+        <div>
+            <TipPercentageComponent label="Tip Amount" handleTipPercentageBump={this.handleTipAmountBump}>{this.getTipAmount()}</TipPercentageComponent>
         </div>
         <div>
             <TipPercentageComponent label='Total With Tip' handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
@@ -156,8 +183,9 @@ class App extends Component {
 
         {this.state.splits.map((s,n) => (
           <div class="splitLine">
-            <div style={{"float": "left"}}>{this.getSplitValue()}</div>
-            <div id={n} class="pointer " style={{"color": "#990000", "text-align": "right"}} onClick={this.handleDeleteClick.bind(this)}><i class="fas fa-trash-alt"></i></div>
+            <div class="splitterCount">{n+1}</div>
+            <div class="splitterValue">{this.getSplitValue()}</div>
+            {n > 0 ? this.deleteComponent(n) : '' }
           </div>
         ))}
 
