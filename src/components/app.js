@@ -6,7 +6,8 @@ class TipPercentageComponent extends Component {
   render(props) {
     return(
       <div>
-        <div class="valueBumpers" style={{"text-align": "right"}}>
+        <div class="tipPercentageText">{props.label}</div>
+        <div class="valueBumpers">
           <div class="fas fa-angle-double-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-5"></div>
           <div class="fas fa-angle-left pointer leftBumper" onClick={props.handleTipPercentageBump} inc="-1"></div>
           {props.children}
@@ -21,7 +22,7 @@ class TipPercentageComponent extends Component {
 
 function Header(props) {
     return (
-       <div class="pageHeader" style={{"padding-top": "0.667em"}}>
+       <div class="pageHeader">
             <i class="fas fa-calculator" style={{"padding-left": "0.25em"}}></i>
             <span class="header">Tip Calculator</span>
             <i class="fas fa-percentage" style={{"padding-right": "0.25em"}}></i>
@@ -135,12 +136,10 @@ class App extends Component {
         </div>
 
         <div style={{"clear": "left"}}>
-            <div class="tipPercentageText" style={{"float": "left", "font-size": "20px"}}>Tip Percentage</div>
-            <TipPercentageComponent handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
+            <TipPercentageComponent label="Tip Percentage" handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
-        <div class="tipPercentageText">
-            <div class="tipPercentageText" style={{"float": "left", "font-size": "20px"}}>Total With Tip</div>
-            <TipPercentageComponent handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
+        <div>
+            <TipPercentageComponent label='Total With Tip' handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
         </div>
 
         <hr/>
@@ -152,7 +151,7 @@ class App extends Component {
             <div totalSplits="4" onClick={this.handleTotalSplitsClick} class={splits.length>3 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="5" onClick={this.handleTotalSplitsClick} class={splits.length>4 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
             <div totalSplits="6" onClick={this.handleTotalSplitsClick} class={splits.length>5 ? "fas fa-user splitPicker pointer" : "far fa-user splitPicker pointer"}></div>
-            <div class="fas fa-plus-square splitPicker pointer" onClick={this.handleAddClick}></div>
+            <div class="fa fa-user-plus pointer" style={{"padding-left": "50px"}} onClick={this.handleAddClick}></div>
         </div>
 
         {this.state.splits.map((s,n) => (
