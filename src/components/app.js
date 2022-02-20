@@ -1,33 +1,33 @@
 import { h, render, Component } from 'preact';
+import Header from './header';
 import fa from "../style/all.min.css";
 
-class TipPercentageComponent extends Component {
 
-  render(props) {
-    return(
-      <div>
-        <div class="tipPercentageText">{props.label}</div>
-        <div class="valueBumpers">
-          <span class="fas fa-angle-double-left pointer bumper" onClick={props.handleTipPercentageBump} inc="-5"></span>
-          <span class="fas fa-angle-left pointer bumper" onClick={props.handleTipPercentageBump} inc="-1"></span>
-          <span class="foo">{props.children}</span>
-          <span class="fas fa-angle-right pointer bumper" onClick={props.handleTipPercentageBump} inc="1"></span>
-          <span class="fas fa-angle-double-right pointer bumper" onClick={props.handleTipPercentageBump} inc="5"></span>
-        </div>
-        <div style={{"clear": "left"}}></div>
-      </div>
-    )
-  }
-}
-
-function Header(props) {
+function BillTotal(props) {
     return (
-       <div class="pageHeader">
-            <i class="fas fa-calculator" style={{"padding-left": "0.25em"}}></i>
-            <span class="header">Tip Calculator</span>
-            <i class="fas fa-percentage" style={{"padding-right": "0.25em"}}></i>
-       </div>)
+<div class="billTotal">
+    <label style={{"padding-right": "0.33em"}}>Bill Total</label>
+    <input type="text" id="txtTotal" style={{"text-align": "center"}} onChange={props.handleTotalChange}/>
+</div>
+    )
 }
+
+function TipPercentageComponent(props) {
+    return(
+<div>
+  <div class="tipPercentageText">{props.label}</div>
+  <div class="valueBumpers">
+    <span class="fas fa-angle-double-left pointer bumper" onClick={props.handleBump} inc="-5"></span>
+    <span class="fas fa-angle-left pointer bumper" onClick={props.handleBump} inc="-1"></span>
+    <span class="foo">{props.children}</span>
+    <span class="fas fa-angle-right pointer bumper" onClick={props.handleBump} inc="1"></span>
+    <span class="fas fa-angle-double-right pointer bumper" onClick={props.handleBump} inc="5"></span>
+  </div>
+  <div style={{"clear": "left"}}></div>
+</div>
+    )
+}
+
 
 function Split(props) {
     return (
@@ -154,19 +154,15 @@ class App extends Component {
 	  <div id="app">
         <Header/>
 
-        <div class="billTotal">
-            <label style={{"padding-right": "0.33em"}}>Bill Total</label>
-            <input type="text" id="txtTotal" style={{"text-align": "center"}} onChange={this.handleTotalChange}/>
-        </div>
-
+        <BillTotal handleTotalChange={this.handleTotalChange}/>
         <div style={{"clear": "left"}}>
-            <TipPercentageComponent label="Tip Percentage" handleTipPercentageBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
+            <TipPercentageComponent label="Tip Percentage" handleBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
         <div>
-            <TipPercentageComponent label="Tip Amount" handleTipPercentageBump={this.handleTipAmountBump}>{this.getTipAmount()}</TipPercentageComponent>
+            <TipPercentageComponent label="Tip Amount" handleBump={this.handleTipAmountBump}>{this.getTipAmount()}</TipPercentageComponent>
         </div>
         <div>
-            <TipPercentageComponent label='Total With Tip' handleTipPercentageBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
+            <TipPercentageComponent label='Total With Tip' handleBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
         </div>
 
         <hr/>
