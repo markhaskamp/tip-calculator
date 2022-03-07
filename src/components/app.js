@@ -55,31 +55,38 @@ class App extends Component {
     let quotient = Math.floor(x/Math.abs(inc))
     let remainder = x % inc
 
+    let retVal = 0
     if (inc < 0) {
         if (inc === -1) {
             if (parseFloat(v) === Math.floor(v)) {
-                return v - 1;
+                retVal = v - 1;
             } else {
-                return Math.floor(v)
+                retVal =  Math.floor(v)
             }
         } else {
             if (remainder === 0) {
                 remainder = inc * -1
             }
-            return x - remainder
+            retVal =  x - remainder
         }
     } else {
         if (inc === 1) {
-            return quotient + inc
+            retVal =  quotient + inc
         } else {
-            return (quotient + 1) * inc
+            retVal =  (quotient + 1) * inc
         }
     }
+
+    if (retVal === NaN || retVal <= 0) {
+        retVal = 0
+    }
+
+    return retVal
   }
 
   handleTipPercentageBump = (props) => {
     let incr = parseInt(props.target.attributes['inc'].value)
-    this.setState({total:         this.state.total,
+    this.setState({total:         this.state.total === NaN ? 0 : this.state.total,
                    tipPercentage: (this.bumpIt(this.state.tipPercentage, incr)),
                    splits:        this.state.splits})
   }
@@ -91,7 +98,7 @@ class App extends Component {
 
     let tipPercentage = (bumpedTipAmount / this.state.total) * 100
 
-    this.setState({total:         this.state.total,
+    this.setState({total:         this.state.total === NaN ? 0 : this.state.total,
                    tipPercentage: (Math.round(tipPercentage * 100) / 100).toFixed(2),
                    splits:        this.state.splits})
   }
@@ -103,7 +110,7 @@ class App extends Component {
 
     let perc = ((bumpedTwp - this.state.total) / this.state.total) * 100
 
-    this.setState({total:         this.state.total,
+    this.setState({total:         this.state.total === NaN ? 0 : this.state.total,
                    tipPercentage: (Math.round(perc * 100) / 100).toFixed(2),
                    splits:        this.state.splits})
   }
