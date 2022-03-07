@@ -29,12 +29,6 @@ function TipPercentageComponent(props) {
 }
 
 
-function Split(props) {
-    return (
-    <span>{props.children}</span>
-    )
-}
-
 class App extends Component {
   state = {total: 0,
            tipPercentage: 20,
@@ -63,7 +57,11 @@ class App extends Component {
 
     if (inc < 0) {
         if (inc === -1) {
-            return quotient + inc
+            if (parseFloat(v) === Math.floor(v)) {
+                return v - 1;
+            } else {
+                return Math.floor(v)
+            }
         } else {
             if (remainder === 0) {
                 remainder = inc * -1
@@ -158,12 +156,8 @@ class App extends Component {
         <div style={{"clear": "left"}}>
             <TipPercentageComponent label="Tip Percentage" handleBump={this.handleTipPercentageBump}>{this.state.tipPercentage}</TipPercentageComponent>
         </div>
-        <div>
-            <TipPercentageComponent label="Tip Amount" handleBump={this.handleTipAmountBump}>{this.getTipAmount()}</TipPercentageComponent>
-        </div>
-        <div>
-            <TipPercentageComponent label='Total With Tip' handleBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent>
-        </div>
+        <div><TipPercentageComponent label="Tip Amount" handleBump={this.handleTipAmountBump}>{this.getTipAmount()}</TipPercentageComponent></div>
+        <div><TipPercentageComponent label='Total With Tip' handleBump={this.handleTotalWithBillBump}>{this.getTotalWithTip()}</TipPercentageComponent></div>
 
         <hr/>
 
